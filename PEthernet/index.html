@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletor de Padrões de Cabos Ethernet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Seletor de Padrões de Cabos Ethernet</h1>
+        <div class="selector">
+            <label for="distance">Selecione a Distância Máxima:</label>
+            <select id="distance" name="distance">
+                <option value="">--Selecione a Distância--</option>
+                <option value="100">100 metros</option>
+                <option value="150">150 metros</option>
+                <option value="300">300 metros</option>
+                <option value="550">550 metros</option>
+                <option value="2000">2000 metros</option>
+                <option value="10000">10000 metros</option>
+                <option value="40000">40000 metros</option>
+            </select>
+        </div>
+        <div class="selector">
+            <label for="connector">Selecione o Tipo de Conector:</label>
+            <select id="connector" name="connector" disabled>
+                <option value="">--Selecione o Conector--</option>
+            </select>
+        </div>
+        <div class="results">
+            <h2>Padrões Possíveis</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+						<th>Distância metros</th>
+                        <th>Conector</th>
+                        <th>Padrão</th>
+                        <th>Tipo</th>
+                        <th>Distância Máxima</th>
+                        <th>Velocidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Resultados serão preenchidos aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
