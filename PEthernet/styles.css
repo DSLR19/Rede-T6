@@ -1,21 +1,45 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin: 0;
     padding: 20px;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
+    color: #2c3e50;
+    margin-top: 0;
+    font-size: 28px;
+}
+
+h2 {
+    color: #34495e;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+fieldset {
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 0 10px;
 }
 
 .selector {
@@ -25,26 +49,209 @@ h1 {
 label {
     display: block;
     margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+small {
+    display: block;
+    margin-top: 4px;
+    color: #7f8c8d;
+    font-size: 13px;
 }
 
 select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    border-color: #667eea;
+    background-color: #f8f9fa;
+}
+
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+select:disabled {
+    background-color: #ecf0f1;
+    cursor: not-allowed;
+    color: #95a5a6;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(149, 165, 166, 0.5);
+}
+
+.results {
+    margin-top: 30px;
+}
+
+.empty-state {
+    background-color: #e8f4f8;
+    border-left: 5px solid #3498db;
+    padding: 20px;
+    border-radius: 6px;
+    color: #2c3e50;
+    text-align: center;
+    display: none;
+}
+
+.empty-state.show {
+    display: block;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 16px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+thead {
+    background-color: #667eea;
+    color: white;
 }
 
 th {
-    background-color: #f4f4f4;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 12px 15px;
+    border: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #e8eef7;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+
+    legend {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    select {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px 5px;
+    }
 }
