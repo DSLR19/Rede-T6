@@ -17,9 +17,16 @@ const cableData = [
     { distance: 40000, connector: 'LC', standard: '10GBase-ER', type: 'Fibra: Monomodo', maxDistance: '40 km', speed: '10 Gbps' }
 ];
 
-document.getElementById('distance').addEventListener('change', function() {
+const distanceSelect = document.getElementById('distance');
+const connectorSelect = document.getElementById('connector');
+const clearButton = document.getElementById('clearButton');
+const resultsTable = document.getElementById('resultsTable');
+const emptyStateMessage = document.getElementById('emptyStateMessage');
+const resultsForm = document.getElementById('selectorForm');
+
+// Evento: Mudança de Distância
+distanceSelect.addEventListener('change', function() {
     const distance = parseInt(this.value);
-    const connectorSelect = document.getElementById('connector');
     connectorSelect.innerHTML = '<option value="">--Selecione o Conector--</option>';
 
     if (!isNaN(distance)) {
@@ -39,8 +46,9 @@ document.getElementById('distance').addEventListener('change', function() {
     updateTable([]);
 });
 
-document.getElementById('connector').addEventListener('change', function() {
-    const distance = parseInt(document.getElementById('distance').value);
+// Evento: Mudança de Conector
+connectorSelect.addEventListener('change', function() {
+    const distance = parseInt(distanceSelect.value);
     const connector = this.value;
 
     if (!isNaN(distance) && connector) {
@@ -51,17 +59,40 @@ document.getElementById('connector').addEventListener('change', function() {
     }
 });
 
+// Evento: Botão Limpar
+clearButton.addEventListener('click', function() {
+    resultsForm.reset();
+    connectorSelect.disabled = true;
+    updateTable([]);
+    distanceSelect.focus();
+});
+
+// Função: Atualizar Tabela
 function updateTable(cables) {
-    const tbody = document.getElementById('resultsTable').querySelector('tbody');
+    const tbody = resultsTable.querySelector('tbody');
     tbody.innerHTML = '';
 
-    cables.forEach(cable => {
-        const row = document.createElement('tr');
-        Object.values(cable).forEach(value => {
-            const cell = document.createElement('td');
-            cell.textContent = value;
-            row.appendChild(cell);
+    if (cables.length === 0) {
+        // Mostrar mensagem de estado vazio
+        emptyStateMessage.style.display = 'block';
+        resultsTable.style.display = 'none';
+    } else {
+        // Ocultar mensagem de estado vazio e mostrar tabela
+        emptyStateMessage.style.display = 'none';
+        resultsTable.style.display = 'table';
+
+        // Preencher tabela com dados
+        cables.forEach(cable => {
+            const row = document.createElement('tr');
+            Object.values(cable).forEach(value => {
+                const cell = document.createElement('td');
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            tbody.appendChild(row);
         });
-        tbody.appendChild(row);
-    });
+    }
 }
+
+// Inicializar estado
+updateTable([]);
