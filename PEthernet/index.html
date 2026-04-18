@@ -1,27 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Seletor de Padrões de Cabos Ethernet</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form>
-        <fieldset>
-            <legend>Form Title</legend>
-            <label for="inputField">Input Label:</label>
-            <input type="text" id="inputField" name="inputField" required>
-            <button type="button" id="clearButton">Clear</button>
-        </fieldset>
-        <p id="emptyStateMessage" style="display:none;">No data submitted. Fill out the form to see results.</p>
-        <button type="submit">Submit</button>
-    </form>
-    <script>
-        document.getElementById('clearButton').addEventListener('click', function() {
-            document.getElementById('inputField').value = '';
-            document.getElementById('emptyStateMessage').style.display = 'block';
-        });
-    </script>
+    <div class="container">
+        <h1>Seletor de Padrões de Cabos Ethernet</h1>
+        
+        <form id="selectorForm" role="form" aria-label="Formulário de seleção de cabos Ethernet">
+            <fieldset>
+                <legend>Configuração de Cabo</legend>
+                
+                <div class="selector">
+                    <label for="distance">Selecione a Distância Máxima:</label>
+                    <select id="distance" name="distance" required aria-required="true" aria-describedby="distanceHelp">
+                        <option value="">--Selecione a Distância--</option>
+                        <option value="100">100 metros</option>
+                        <option value="150">150 metros</option>
+                        <option value="300">300 metros</option>
+                        <option value="550">550 metros</option>
+                        <option value="2000">2000 metros</option>
+                        <option value="10000">10000 metros</option>
+                        <option value="40000">40000 metros</option>
+                    </select>
+                    <small id="distanceHelp">Escolha a distância máxima que seu cabo deve suportar</small>
+                </div>
+
+                <div class="selector">
+                    <label for="connector">Selecione o Tipo de Conector:</label>
+                    <select id="connector" name="connector" disabled aria-disabled="true" aria-describedby="connectorHelp">
+                        <option value="">--Selecione o Conector--</option>
+                    </select>
+                    <small id="connectorHelp">Selecione a distância primeiro para ver conectores disponíveis</small>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" id="clearButton" class="btn btn-secondary" aria-label="Limpar formulário e resultados">
+                        🔄 Limpar
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+
+        <div class="results" role="region" aria-live="polite" aria-label="Resultados da pesquisa">
+            <h2>Padrões Possíveis</h2>
+            
+            <div id="emptyStateMessage" class="empty-state show" role="status" aria-live="assertive">
+                <p>ℹ️ Selecione uma distância e um conector para ver os padrões disponíveis.</p>
+            </div>
+
+            <table id="resultsTable" style="display: none;" role="grid" aria-label="Tabela de padrões de cabos">
+                <thead>
+                    <tr>
+                        <th scope="col">Distância (m)</th>
+                        <th scope="col">Conector</th>
+                        <th scope="col">Padrão</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Distância Máxima</th>
+                        <th scope="col">Velocidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Resultados serão preenchidos aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
